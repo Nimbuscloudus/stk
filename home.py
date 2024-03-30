@@ -15,7 +15,7 @@ returns = returns.replace([np.inf, -np.inf], np.nan)
 # Calculate expected returns and covariance matrix
 expected_returns = returns.mean()
 cov_matrix = returns.cov()
-
+initial_guess = [1 / len(expected_returns) for _ in range(len(expected_returns))]
 # Define optimization functions
 def portfolio_volatility(weights, cov_matrix):
     return np.sqrt(np.dot(weights.T, np.dot(cov_matrix, weights)))
