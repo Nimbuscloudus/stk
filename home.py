@@ -37,4 +37,4 @@ optimal_weights = minimize(min_volatility, initial_guess, method='SLSQP', bounds
 if st.button('Тооцоолох'):
     st.write("Тохирох жин:")
     for company, weight in zip(stocks.columns, optimal_weights.x):
-        st.write(f"{company}: {budget*weight:.4f}")
+        st.write(f"{company}: {budget*weight}")
