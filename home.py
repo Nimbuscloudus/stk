@@ -1,3 +1,4 @@
+import streamlit
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -30,7 +31,6 @@ initial_guess = [1 / len(expected_returns) for _ in range(len(expected_returns))
 
 optimal_weights = minimize(min_volatility, initial_guess, method='SLSQP', bounds=bounds, constraints=constraints)
 
-# Print optimized portfolio
 print("Тохирох жин:")
 for company, weight in zip(stocks.columns, optimal_weights.x):
     print(f"{company}: {weight:.4f}")
