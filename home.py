@@ -31,7 +31,7 @@ risk_level = st.number_input('Хөрөнгийн чухал үзэлт:', min_va
 constraints = ({'type': 'eq', 'fun': lambda x: np.sum(x) - 1})
 bounds = tuple((0, 1) for _ in range(len(expected_returns)))
 
-optimal_weights = minimize(min_volatility, initial_guess, method='SLSQP', bounds=bounds, constraints=constraints)
+optimal_weights = minimize(min_volatility, risk_level, method='SLSQP', bounds=bounds, constraints=constraints)
 
 # Display results
 if st.button('Тооцоолох'):
