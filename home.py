@@ -25,7 +25,7 @@ def min_volatility(weights):
 
 # Streamlit UI
 budget = st.number_input('Боломжтой хөрөнгө')
-risk_level = st.number_input('Хөрөнгийн чухал үзэлт:', min_value=0.0, max_value=1.0, value=0.5)
+risk_level = st.number_input('Риск хязгаар:', min_value=0.0, max_value=1.0, value=0.5)
 
 # Optimization
 constraints = ({'type': 'eq', 'fun': lambda x: np.sum(x) - 1},  # Sum of weights constraint
