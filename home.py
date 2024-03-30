@@ -40,6 +40,7 @@ if st.button('Тооцоолох'):
     st.write("Тохирох жин:")
     for company, weight in zip(stocks.columns, optimal_weights.x):
         st.write(f"{company}: {round(budget*weight, 2)}")
-# Display time series data
-st.write("Stocks' Time Series Data:")
-st.line_chart(stocks)
+st.write("Түүх:")
+for company in stocks.columns:
+    st.write(f"### {company}")
+    st.line_chart(stocks[company])
