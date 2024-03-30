@@ -9,6 +9,9 @@ stocks['date'] = pd.to_datetime(stocks['date'])
 
 # Prepare data
 stocks = stocks.pivot_table(index='date', columns='Company', values='close', aggfunc='last').fillna(method='bfill')
+stocks = stocks.apply(lambda x: x.replace(0, np.nan))
+stocks = stocks.fillna(stocks.mean())
+
 returns = stocks.pct_change().dropna()
 returns = returns.replace([np.inf, -np.inf], np.nan)
 
