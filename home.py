@@ -31,6 +31,6 @@ initial_guess = [1 / len(expected_returns) for _ in range(len(expected_returns))
 
 optimal_weights = minimize(min_volatility, initial_guess, method='SLSQP', bounds=bounds, constraints=constraints)
 
-print("Тохирох жин:")
+st.write("Тохирох жин:")
 for company, weight in zip(stocks.columns, optimal_weights.x):
-    print(f"{company}: {weight:.4f}")
+    st.write(f"{company}: {weight:.4f}")
