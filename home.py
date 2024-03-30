@@ -6,9 +6,11 @@ from sklearn.linear_model import LinearRegression
 from pypfopt import expected_returns, risk_models, EfficientFrontier
 import matplotlib.pyplot as plt
 from scipy.optimize import minimize
+budget = st.number_input('Боломжтой хөрөнгө')
 
 rates = pd.read_csv('exchange rates - Currency (2).csv')
 stocks = pd.read_csv('stocks - STOCK (2).csv')
+
 
 rates.date = rates.date.astype('datetime64[ns]')
 stocks.date = stocks.date.astype('datetime64[ns]')
@@ -31,6 +33,8 @@ initial_guess = [1 / len(expected_returns) for _ in range(len(expected_returns))
 
 optimal_weights = minimize(min_volatility, initial_guess, method='SLSQP', bounds=bounds, constraints=constraints)
 
-st.write("Тохирох жин:")
-for company, weight in zip(stocks.columns, optimal_weights.x):
-    st.write(f"{company}: {weight:.4f}")
+
+if st.button('Тооцоолох'):
+    st.write("Тохирох жин:")
+    for company, weight in zip(stocks.columns, optimal_weights.x):
+        st.write(f"{company}: {weight:.4f}")
