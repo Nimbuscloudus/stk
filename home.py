@@ -6,11 +6,11 @@ from scipy.optimize import minimize
 # Load data
 stocks = pd.read_csv('stocks - STOCK (2).csv')
 stocks['date'] = pd.to_datetime(stocks['date'])
-
+stocks['close'] = stocks['close'].astype('int')
 # Prepare data
 stocks = stocks.pivot_table(index='date', columns='Company', values='close', aggfunc='last').fillna(method='bfill')
 stocks = stocks.apply(lambda x: x.replace(0, np.nan))
-stocks = stocks.fillna(stocks.mean())
+stocks = stocks.fillna(stocks.groupby(level=0).transform('mean'))
 
 returns = stocks.pct_change().dropna()
 returns = returns.replace([np.inf, -np.inf], np.nan)
